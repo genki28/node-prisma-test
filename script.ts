@@ -5,13 +5,27 @@ const prisma = new PrismaClient()
 // A `main` function so that you can use async/await
 async function main() {
   // 何かqueryを放つ
-  // const allUsers = await prisma.user.findMany()
-  // console.log(allUsers)
-  const allUsers = await prisma.user.findMany({
-    include: { posts: true }
-  })
+  // const post = await prisma.post.create({
+  //   data: {
+  //     title: 'Prisma makes databases easy',
+  //     author: {
+  //       connect: { email: 'sarah@prisma.io'}
+  //     },
+  //   },
+  // })
+  // console.log(post)
+  // // const allUsers = await prisma.user.findMany()
+  // // console.log(allUsers)
+  // const allUsers = await prisma.user.findMany({
+  //   include: { posts: true }
+  // })
 
-  console.dir(allUsers, { depth: null })
+  // console.dir(allUsers, { depth: null })
+  const post = await prisma.post.update({
+    where: { id: 2 },
+    data: { published: true }
+  })
+  console.log(post)
 }
 
 main()
